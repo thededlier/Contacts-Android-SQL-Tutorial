@@ -46,7 +46,7 @@
             android:text="Update" />
 
         <Button
-            android:id="@+id/delete"
+            android:id="@+id/btnRemove"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Delete"/>
