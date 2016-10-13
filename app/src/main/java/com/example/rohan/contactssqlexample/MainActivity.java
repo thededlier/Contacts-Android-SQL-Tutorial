@@ -11,7 +11,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     TextView contactCount;
-    ListView contactList;
+    TextView contactList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,14 +21,18 @@ public class MainActivity extends AppCompatActivity {
         DatabaseHandler db = new DatabaseHandler(this);
 
         contactCount    = (TextView)findViewById(R.id.contactCount);
-        contactList     = (ListView)findViewById(R.id.contactList);
+        contactList     = (TextView) findViewById(R.id.contactList);
 
 
         int count = db.getContactsCount();
         contactCount.setText("Contacts : " + count);
 
+        String list = "";
         List<Contact> contacts = db.getAllContacts();
-        ArrayAdapter adapter = new ArrayAdapter<Contact>(this, R.layout.activity_main, contacts);
-        contactList.setAdapter(adapter);
+        for(Contact cn : contacts) {
+            list += "Id : " + cn.getID() + " Name : " + cn.getName() + " Phone Number : " + cn.getPhoneNumber();
+        }
+
+        contactList.setText(list);
     }
 }
